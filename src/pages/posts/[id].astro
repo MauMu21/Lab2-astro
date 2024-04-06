@@ -1,0 +1,32 @@
+---
+export async function getStaticPaths() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+  const posts = await res.json();
+
+  return posts.map((post) => ({ params: { id: post.id.toString() } }));
+}
+
+export async function getStaticProps({ params }) {
+  const postRes = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
+  const post = await postRes.json();
+
+  return { props: { post } };
+}
+---
+
+<html>
+<head>
+  <title>{Astro.props.post ? Astro.props.post.title : 'Cargando...'}</title>
+</head>
+<body>
+  <div class="container">
+    <article>
+      <h1>{Astro.props.post ? Astro.props.post.title : 'Cargando...'}</h1>
+      <p>{Astro.props.post ? Astro.props.post.body : ''}</p>
+      <a href="/">Volver al inicio</a>
+    </article>
+  </div>
+</body>
+</html>
+
+
