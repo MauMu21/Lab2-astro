@@ -25,21 +25,48 @@ const posts = await res.json();
 	</div>
 	<section>
 		 <div class="container">
-    <h1>Bienvenido a mi Blog</h1>
-    <div>
-      {posts.map(post => (
-        <PostCard key={post.id} post={post} />
-      ))}
-    </div>
-  </div>
+			<h1>Bienvenido a mi Blog</h1>
+			<div class="scrollbar" id="scrollbar6">
+			{posts.map(post => (
+				<PostCard key={post.id} post={post} />
+			))}
+			</div>
+  		</div>
 	</section>
 	<Footer />
 </body>
 </html>
 
 <style>
+
+.scrollbar {
+            height: 500px;
+            overflow: auto;
+            padding: 0 10px;
+        }
+
+#scrollbar6::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        #scrollbar6::-webkit-scrollbar-track {
+            border-radius: 8px;
+            background-color: #CBCEDC;
+            border: 1px solid #cacaca;
+        }
+        
+        #scrollbar6::-webkit-scrollbar-thumb {
+            border-radius: 8px;
+            background-color: rgb(4, 20, 88);
+        }
+
+	.poss{
+      overflow-y: auto; 
+      max-height: 700px; 
+      }
 	h1{
-		color: #513EB7;
+		font-size: 40px;
+		color: rgb(4, 20, 88);
 	}
 	.container {
 		display: flex;
@@ -49,10 +76,10 @@ const posts = await res.json();
 		max-width: 80%;
 		margin: 0 auto;
 	}
-	body{
+	/* body{
 		background: rgb(34,193,195);
-background: linear-gradient(0deg, rgba(34,193,195,1) 9%, rgba(237,236,248,1) 66%, rgba(255,255,255,1) 85%);
-	}
+		background: linear-gradient(0deg, rgba(4,20,88,1) 9%, rgba(237,236,248,1) 66%, rgba(255,255,255,1) 85%);
+	} */
 
 
 </style>
